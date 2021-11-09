@@ -29,29 +29,12 @@ export function Home() {
 
   function handleToggleTaskDone(id: number) {
     const updatedTasks = tasks.map(task => ({ ...task }));
+    const taskEditDone = updatedTasks.find(item => item.id === id);
 
-    // Solução utilizando find
-    updatedTasks.find(item => {
-      if (item.id === id) {
-        if (item.done) {
-          item.done = false;
-        } else {
-          item.done = true;
-        }
-      }
-    });
+    if (!taskEditDone)
+      return;
 
-    // Solução utilizando forEach
-    // updatedTasks.forEach(item => {
-    //   if (item.id === id) {
-    //     if (item.done) {
-    //       item.done = false;
-    //     } else {
-    //       item.done = true;
-    //     }
-    //   }
-    // }
-    // );
+    taskEditDone.done = !taskEditDone.done;
 
     setTasks(updatedTasks);
   }
